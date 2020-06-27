@@ -6,7 +6,7 @@
     <meta name="description" content="A form to allow students and alumni get tickets to a yearly CEAS Tribunal event called Eweek Banquet.">
     <title>Eweek Banquet Tickets</title>
 
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="../build/main.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css">
 </head>
 <body>
@@ -25,22 +25,25 @@
                 <input type="text" id="phone-number" name="phone-number" placeholder="Phone Number (xxx-xxx-xxxx)" autocomplete="off">
                 <input type="text" id="email" name="email" placeholder="Email" autocomplete="off">
                 <input type="text" id="birth-date" name="birth-date" placeholder="Date of Birth (mm/dd/yyyy)" autocomplete="off">
-                <h3>Select Ticket</h3>
-                <div class="radio-group">
-                    <div class="radio-button">
-                        <input type="radio" id="radio-0" name="ticket_type" value="20">
-                        <label for="radio-0">Under 21</label>
+                <div class = "ticket-type-radio">
+                    <div class="radio-group">
+                        <div class="radio-button">
+                            <input type="radio" id="radio-0" name="ticket_type" value="20">
+                            <label for="radio-0">Under 21</label>
+                        </div>
+                        <div class="radio-button">
+                            <input type="radio" id="radio-1" name="ticket_type" value="35">
+                            <label for="radio-1">Over 21</label>
+                        </div>
+                        <div class="radio-button">
+                            <input type="radio" id="radio-2" name="ticket_type" value="50">
+                            <label for="radio-2">Alumni</label>
+                        </div>
+                        
                     </div>
-                    <div class="radio-button">
-                        <input type="radio" id="radio-1" name="ticket_type" value="35">
-                        <label for="radio-1">Over 21</label>
-                    </div>
-                    <div class="radio-button">
-                        <input type="radio" id="radio-2" name="ticket_type" value="50">
-                        <label for="radio-2">Alumni</label>
-                    </div>
-                    
                 </div>
+                <h3>Select Ticket</h3>
+                
                 
                 <label for="venmo-image">Venmo Transaction Image</label>
                 <p>The ticket will have to be paid through Venmo to confirm your place. Make a payment to @<span class="venmo-recipient"></span>
@@ -76,6 +79,6 @@
         <p>For any questions or comments, contact us at uc.eas.tribunal@gmail.com.</p>      
     </footer>
 
-    <script src="scripts/main.js" type=module></script>
+    <script src="../build/scripts/submission.bundle.js" type="text/javascript"></script>
 </body>
 </html>
