@@ -4,26 +4,32 @@ import { StatusConstants } from '../../constants/statusConstants';
 export class SubmissionData {
     public name: string;
     public email: string;
-    public description: string;
-    public orgName: string;
-    public file: File; 
+    public phone: string;
+    public dateOfBirth: string;
+    public ticketType: string;
+    public transactionImage: File;
+    public busWaiver: File; 
 
     /**
-     * The constructor:
-     * @param name The Full names of the the person submitting.
-     * @param email The email of the person.
-     * @param description The description.
-     * @param orgName The name of the orgainzation submitting the ad.
-     * @param file File being submitted.
-     */
+    * The constructor:
+    * @param {Element} name - The name field to validate and send.
+    * @param {Element} email - The email field to validate and send.
+    * @param {Element} phone - The phone field to validate and send.
+    * @param {Element} dateOfBirth - The date of birth field to validate and send.
+    * @param {Element} ticketType - The type of ticket field to validate and send.
+    * @param {Element} transactionImage - The transaction image field to validate and send.
+    * @param {Element} busWavier - The bus wavier field to validate and send.
+    */
     constructor(
-        name: string, email: string, description: string, orgName: string, file: File
+        name: string, email: string, phone: string, dateOfBirth: string,ticketType: string, transactionImage: File, busWaiver:File
     ) {
         this.name = name;
         this.email = email;
-        this.description = description;
-        this.orgName = orgName;
-        this.file = file;
+        this.phone = phone;
+        this.dateOfBirth = dateOfBirth;
+        this.ticketType = ticketType;
+        this.transactionImage = transactionImage;
+        this.busWaiver = busWaiver;
     }
 
     /**
@@ -34,9 +40,11 @@ export class SubmissionData {
 
         submissionFormData.append('nameText', this.name);
         submissionFormData.append('emailText', this.email);
-        submissionFormData.append('descriptionText', this.description);
-        submissionFormData.append('orgNameText', this.orgName);
-        submissionFormData.append('imageFile', this.file);
+        submissionFormData.append('phoneText', this.phone);
+        submissionFormData.append('dateOfBirthText', this.dateOfBirth);
+        submissionFormData.append('ticketTypeNumber', this.ticketType);
+        submissionFormData.append('transactionFile', this.transactionImage);
+        submissionFormData.append('busWaiverFile', this.busWaiver);
 
         const response = await fetch('../api/send_submission.php', {
             method: 'POST',

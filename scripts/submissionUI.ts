@@ -13,8 +13,8 @@ export const submitData = function(){
     submitButton.onclick = (async() => {
         const name = document.querySelector('form #name') as HTMLInputElement;
         const email = document.querySelector('form #email') as HTMLInputElement;
-        const orgName = document.querySelector('form #organization-name') as HTMLInputElement;
-        const description = document.querySelector('form #Description') as HTMLInputElement;
+        const phoneNumber = document.querySelector('form #phone-number') as HTMLInputElement;
+        const birthDate = document.querySelector('form #birth-date') as HTMLInputElement;
         const ad = document.querySelector('form #ad-file') as HTMLInputElement;
 
         if(!validateInputFieldData(name, email, orgName, description) && ad.files !== null && ad.files.length > 0){
