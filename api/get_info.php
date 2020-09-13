@@ -10,7 +10,7 @@ if (!isset($result_data))
 $result_data->status = 'error';
 $result_data->data[] = array();
 
-$sql = 'SELECT description, price, venmo_recipient FROM luau_tickets_info';
+$sql = 'SELECT description, price, venmo_recipient FROM eweek_banquet_info';
 
 $result = $mysqli->query($sql);
 

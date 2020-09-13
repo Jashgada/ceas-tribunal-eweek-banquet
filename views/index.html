@@ -12,7 +12,7 @@
 <body>
     <div class="intro">
         <header>
-            <a href="https://tribunal.uc.edu"><img src="./images/tribunal_logo.png" alt="Tribunal logo"></a>
+            <a href="https://tribunal.uc.edu"><img src="../images/tribunal_logo.png" alt="Tribunal logo"></a>
         </header>
 
         <div class="container reservation-form">
@@ -25,6 +25,8 @@
                 <input type="text" id="phone-number" name="phone-number" placeholder="Phone Number (xxx-xxx-xxxx)" autocomplete="off">
                 <input type="text" id="email" name="email" placeholder="Email" autocomplete="off">
                 <input type="text" id="birth-date" name="birth-date" placeholder="Date of Birth (mm/dd/yyyy)" autocomplete="off">
+
+                <h3>Select Ticket</h3>
                 <div class = "ticket-type-radio">
                     <div class="radio-group">
                         <div class="radio-button">
@@ -42,7 +44,7 @@
                         
                     </div>
                 </div>
-                <h3>Select Ticket</h3>
+                
                 
                 
                 <label for="venmo-image">Venmo Transaction Image</label>
@@ -59,7 +61,7 @@
                 <a class="download" href="./documents/BusWaiver.docx">Download Bus Waiver</a>
                 <label class="file-upload">
                     <input type="file" id="bus-waiver" name="bus-waiver" accept="application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/pdf, image/png, image/jpeg">
-                    <div class="file-text file-text-wavier"><i class="fas fa-file-upload"></i> <span>Click to Upload</span></div>
+                    <div class="file-text file-text-wavier"><i class="fas fa-file-upload"></i> <span class="file-text-waiver-span">Click to Upload</span></div>
                 </label>
                 <input type="button" value="Submit" id="submit-button">
                 <div class="loader lds-ellipsis"><div></div><div></div><div></div><div></div></div>

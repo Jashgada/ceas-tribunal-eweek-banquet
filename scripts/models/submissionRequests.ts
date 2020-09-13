@@ -6,7 +6,7 @@ export class SubmissionData {
     public email: string;
     public phone: string;
     public dateOfBirth: string;
-    public ticketType: string;
+    //public ticketType: string;
     public transactionImage: File;
     public busWaiver: File; 
 
@@ -21,13 +21,13 @@ export class SubmissionData {
     * @param {Element} busWavier - The bus wavier field to validate and send.
     */
     constructor(
-        name: string, email: string, phone: string, dateOfBirth: string,ticketType: string, transactionImage: File, busWaiver:File
+        name: string, email: string, phone: string, dateOfBirth: string, transactionImage: File, busWaiver:File
     ) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.dateOfBirth = dateOfBirth;
-        this.ticketType = ticketType;
+        //this.ticketType = ticketType;
         this.transactionImage = transactionImage;
         this.busWaiver = busWaiver;
     }
@@ -42,7 +42,7 @@ export class SubmissionData {
         submissionFormData.append('emailText', this.email);
         submissionFormData.append('phoneText', this.phone);
         submissionFormData.append('dateOfBirthText', this.dateOfBirth);
-        submissionFormData.append('ticketTypeNumber', this.ticketType);
+        //submissionFormData.append('ticketTypeNumber', this.ticketType);
         submissionFormData.append('transactionFile', this.transactionImage);
         submissionFormData.append('busWaiverFile', this.busWaiver);
 

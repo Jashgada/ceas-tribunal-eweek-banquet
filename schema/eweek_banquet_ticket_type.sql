@@ -7,18 +7,18 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 
-CREATE TABLE `eweek_banquet_reserved` (
+CREATE TABLE `eweek_banquet_ticket_type` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-ALTER TABLE `eweek_banquet_reserved`
+ALTER TABLE `eweek_banquet_ticket_type`
   ADD PRIMARY KEY (`id`);
 
 
-ALTER TABLE `eweek_banquet_reserved`
+ALTER TABLE `eweek_banquet_ticket_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

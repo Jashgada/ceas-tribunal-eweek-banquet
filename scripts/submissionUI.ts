@@ -15,19 +15,21 @@ export const submitData = function(){
         const email = document.querySelector('form #email') as HTMLInputElement;
         const phoneNumber = document.querySelector('form #phone-number') as HTMLInputElement;
         const birthDate = document.querySelector('form #birth-date') as HTMLInputElement;
-        const ad = document.querySelector('form #ad-file') as HTMLInputElement;
 
-        if(!validateInputFieldData(name, email, orgName, description) && ad.files !== null && ad.files.length > 0){
+        const venmo = document.querySelector('form #venmo-image') as HTMLInputElement;
+        const waiver = document.querySelector('form #bus-waiver') as HTMLInputElement;
+
+        if(!validateInputFieldData(name, email, phoneNumber, birthDate) && venmo.files !== null && venmo.files.length > 0 && waiver.files!==null && waiver.files.length>0){
             // Add file checking
             submitButton.style.display = 'none';
             loader.style.display = 'block';
 
-            if (ad.files[0] && ad.files[0].size > fileSizeLimit) {
+            if ((waiver.files[0] && waiver.files[0].size > fileSizeLimit) || (venmo.files[0] && venmo.files[0].size>fileSizeLimit)) {
                 displayWarning('Please choose a file under 2MB.');
                 submitButton.style.display = 'block';
                 loader.style.display = 'none';
             } else {
-                const submissionData = new SubmissionData(name.value, email.value, description.value, orgName.value, ad.files[0]);
+                const submissionData = new SubmissionData(name.value, email.value, phoneNumber.value, birthDate.value, venmo.files[0], waiver.files[0]);
 
                 try {
                     await submissionData.sendData();
@@ -52,8 +54,11 @@ export const submitData = function(){
 };
 
 export const watchFileUploadText = function () {
-    const fileUploadElement = document.querySelector('#ad-file') as HTMLInputElement;
-    const fileUploadText = document.querySelector('.file-text span') as HTMLSpanElement;
+    const fileUploadElement = document.querySelector('#venmo-image') as HTMLInputElement;
+    const fileUploadText = document.querySelector('.file-text-venmo span') as HTMLSpanElement;
+
+    const fileUploadElement2 = document.querySelector('#bus-waiver') as HTMLInputElement;
+    const fileUploadText2 = document.querySelector('.file-text-waiver-span') as HTMLSpanElement;
 
     fileUploadElement.onchange = function () {
         if (fileUploadElement.files !== null) {
@@ -61,4 +66,32 @@ export const watchFileUploadText = function () {
             fileUploadText.textContent = fileName;
         }
     };
+
+    fileUploadElement2.onchange = function () {
+        if (fileUploadElement2.files !== null) {
+            const fileName = fileUploadElement2.files[0].name;
+            fileUploadText2.textContent = fileName;
+        }
+    };
+}
+
+export const watchInputText = function(){
+
+    const phoneNumber = document.querySelector('form #phone-number') as HTMLInputElement;
+    const birthDate = document.querySelector('form #birth-date') as HTMLInputElement;
+
+    phoneNumber.onkeyup = function(ev)
+    {
+        if ((phoneNumber.value.length === 3 || phoneNumber.value.length === 7) && phoneNumber.value !== '' && ev.key !== 'Backspace') {
+            phoneNumber.value += '-';
+  }
+}
+
+    birthDate.onkeyup = function(ev)
+    {
+        if ((birthDate.value.length === 2 || birthDate.value.length === 5) && birthDate.value !== '' && ev.key !== 'Backspace') {
+            birthDate.value += '/';
+  }
+    }
+
 }

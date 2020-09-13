@@ -9,8 +9,8 @@ use PHPMailer\PHPMailer\Exception;
 set_include_path('./includes/');
 require_once('mysqli.php');
 require_once('check_file.php');
-require_once('PHPMailer/Exception.php');
-require_once('PHPMailer/PHPMailer.php');
+//require_once('PHPMailer/Exception.php');
+//require_once('PHPMailer/PHPMailer.php');
 
 DEFINE('BUS_WAVIER_MAX_FILE_SIZE', 6);
 DEFINE('TRANSACTION_IMAGE_MAX_FILE_SIZE', 6);
@@ -25,9 +25,9 @@ $name = mysqli_real_escape_string($mysqli, strip_tags(trim($_POST['nameText'])))
 $phone = mysqli_real_escape_string($mysqli, strip_tags(trim($_POST['phoneText'])));
 $email = mysqli_real_escape_string($mysqli, strip_tags(trim($_POST['emailText'])));
 $date_of_birth = mysqli_real_escape_string($mysqli, strip_tags(trim($_POST['dateOfBirthText'])));
-$ticket_type = $_POST['ticketTypeValue'];
-$bus_wavier = $_FILES['busWavierFile'];
-$transaction_image = $_FILES['transactionImageFile'];
+$ticket_type = 0; //$_POST['ticketTypeValue'];
+$bus_wavier = $_FILES['busWaiverFile'];
+$transaction_image = $_FILES['transactionFile'];
 
 $bus_wavier_mime_types = array(
     'pdf' => 'application/pdf',
@@ -102,7 +102,7 @@ $admin_email = '';
 $super_email = '';
 $event_date = '';
 
-$sql = 'SELECT admin_name, admin_email, super_email, event_date FROM luau_tickets_info';
+$sql = 'SELECT admin_name, admin_email, super_email, event_date FROM eweek_banquet_info';
 $result = $mysqli->query($sql);
 
 if ($result) {
@@ -151,7 +151,7 @@ if ($is_too_young) {
 }
 
 // Update student resevation data
-$sql = 'INSERT INTO luau_tickets_reserved (name, phone, email, date_of_birth, ticketType) '
+$sql = 'INSERT INTO eweek_banquet_reserved (name, phone, email, date_of_birth, ticketType) '
     . "VALUES ('".$name."','".$phone."','".$email."','".$date_of_birth."','".$ticket_type."')";
 
 $result = $mysqli->query($sql);

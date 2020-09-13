@@ -1,2 +1,2 @@
 RewriteEngine on
-RewriteRule ^$ /tv-submission/views [L]
+RewriteRule ^$ /views [L]

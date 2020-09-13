@@ -1,3 +1,13 @@
+  
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Jan 31, 2020 at 12:23 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -17,8 +27,8 @@ CREATE TABLE `eweek_banquet_info` (
   `admin_name` varchar(256) NOT NULL,
   `admin_email` varchar(256) NOT NULL,
   `super_email` varchar(256) NOT NULL,
-  `open` boolean NOT NULL,
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `open` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 ALTER TABLE `eweek_banquet_info`
