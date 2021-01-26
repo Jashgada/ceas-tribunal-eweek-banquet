@@ -1,5 +1,5 @@
 <?php
-// error_reporting(-1);
+error_reporting(-1);
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
@@ -9,8 +9,8 @@ use PHPMailer\PHPMailer\Exception;
 set_include_path('./includes/');
 require_once('mysqli.php');
 require_once('check_file.php');
-//require_once('PHPMailer/Exception.php');
-//require_once('PHPMailer/PHPMailer.php');
+require_once('PHPMailer/Exception.php');
+require_once('PHPMailer/PHPMailer.php');
 
 DEFINE('BUS_WAVIER_MAX_FILE_SIZE', 6);
 DEFINE('TRANSACTION_IMAGE_MAX_FILE_SIZE', 6);
@@ -19,13 +19,13 @@ $name = '';
 $phone = '';
 $email = '';
 $date_of_birth = '';
-$ticket_type = 0;
+$ticket_type = '';
 
 $name = mysqli_real_escape_string($mysqli, strip_tags(trim($_POST['nameText'])));
 $phone = mysqli_real_escape_string($mysqli, strip_tags(trim($_POST['phoneText'])));
 $email = mysqli_real_escape_string($mysqli, strip_tags(trim($_POST['emailText'])));
 $date_of_birth = mysqli_real_escape_string($mysqli, strip_tags(trim($_POST['dateOfBirthText'])));
-$ticket_type = 0; //$_POST['ticketTypeValue'];
+$ticket_type = $_POST['ticketTypeNumber'];
 $bus_wavier = $_FILES['busWaiverFile'];
 $transaction_image = $_FILES['transactionFile'];
 
@@ -125,18 +125,21 @@ $event_year = substr($event_date, 6, 4);
 $birth_year = substr($date_of_birth, 6, 4);
 
 $is_too_young = false;
+$is_under_21 = false;
 
 if ($event_year - $birth_year < 18) {
     $is_too_young = true;
-} else if ($event_year - $birth_year == 18) {
-    $event_month = substr($event_date, 3, 2);
-    $birth_month = substr($date_of_birth, 3, 2);
+}
+
+else if ($event_year - $birth_year == 18) {
+    $event_month = substr($event_date, 0, 2);
+    $birth_month = substr($date_of_birth, 0, 2);
     
     if ($event_month - $birth_month < 0) {
         $is_too_young = true;
     } else if ($event_month - $birth_month == 0) {
-        $event_date = substr($event_date, 0, 2);
-        $birth_date = substr($date_of_birth, 0, 2);
+        $event_date = substr($event_date, 3, 2);
+        $birth_date = substr($date_of_birth, 3, 2);
         
         if ($event_date - $birth_date < 0) {
             $is_too_young = true;
@@ -144,15 +147,42 @@ if ($event_year - $birth_year < 18) {
     }
 }
 
+
 if ($is_too_young) {
     $result_data->message = "Reservation denied. You must be 18 or older by the event date to reserve a ticket.";
     echo json_encode($result_data);
     die();
 }
 
+
+    if($event_year - $birth_year < 21 && $ticket_type!=1){
+        $is_under_21 = true;
+    } 
+    else if ($event_year - $birth_year == 21) {
+        $event_month = substr($event_date, 0, 2);
+        $birth_month = substr($date_of_birth, 0, 2);
+        
+        if ($event_month - $birth_month < 0) {
+            $is_under_21 = true;
+        } else if ($event_month - $birth_month == 0) {
+            $event_date = substr($event_date, 3, 2);
+            $birth_date = substr($date_of_birth, 3, 2);
+            
+            if ($event_date - $birth_date < 0) {
+                $is_under_21 = true;
+            }
+        }
+    }
+
+
+if($is_under_21){
+    $result_data->message = "Reservation denied. You must be 21 or older by the event date to reserve the selected ticket.";
+    echo json_encode($result_data);
+    die();
+}
+
 // Update student resevation data
-$sql = 'INSERT INTO eweek_banquet_reserved (name, phone, email, date_of_birth, ticketType) '
-    . "VALUES ('".$name."','".$phone."','".$email."','".$date_of_birth."','".$ticket_type."')";
+$sql = "INSERT INTO eweek_banquet_reserved ( name, email, phone, date_of_birth, ticket_id) VALUES ('".$name."','".$email."','".$phone."','".$date_of_birth."','".$ticket_type."')";
 
 $result = $mysqli->query($sql);
 

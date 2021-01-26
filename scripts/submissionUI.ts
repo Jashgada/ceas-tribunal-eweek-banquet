@@ -15,7 +15,7 @@ export const submitData = function(){
         const email = document.querySelector('form #email') as HTMLInputElement;
         const phoneNumber = document.querySelector('form #phone-number') as HTMLInputElement;
         const birthDate = document.querySelector('form #birth-date') as HTMLInputElement;
-
+        const ticketType = getSelectedTicketType(); // document.getElementsByName('ticket_type')
         const venmo = document.querySelector('form #venmo-image') as HTMLInputElement;
         const waiver = document.querySelector('form #bus-waiver') as HTMLInputElement;
 
@@ -29,18 +29,18 @@ export const submitData = function(){
                 submitButton.style.display = 'block';
                 loader.style.display = 'none';
             } else {
-                const submissionData = new SubmissionData(name.value, email.value, phoneNumber.value, birthDate.value, venmo.files[0], waiver.files[0]);
+                const submissionData = new SubmissionData(name.value, email.value, phoneNumber.value, birthDate.value, ticketType, venmo.files[0], waiver.files[0]);
 
                 try {
                     await submissionData.sendData();
     
                     const introInfo = document.querySelector('.intro-info') as HTMLDivElement;
                     const submissionForm = document.querySelector('form') as HTMLFormElement;
-                    const submissionConfirm = document.querySelector('.submission-confirm') as HTMLDivElement;
+                    // const submissionConfirm = document.querySelector('.submission-confirm') as HTMLDivElement;
         
                     introInfo.style.display = 'none';
                     submissionForm.style.display = 'none';
-                    submissionConfirm.style.display = 'block';
+                   // submissionConfirm.style.display = 'block';
                 } catch (e) {
                     displayWarning(e);
                     submitButton.style.display = 'block';
@@ -73,6 +73,25 @@ export const watchFileUploadText = function () {
             fileUploadText2.textContent = fileName;
         }
     };
+}
+
+const getSelectedTicketType = function() : string{
+    //const ticket_type = document.getElementsByName('ticket_type');
+   const form = document.forms[0];
+console.log(form);
+//const radios = form.elements[4];
+const radios = form.elements.namedItem("ticket_type") as RadioNodeList;
+console.log(radios.value);
+
+
+//   let checkedNum;
+//    console.log(ticket_type);
+//    ticket_type.forEach(ticket => {
+//         if(ticket.checked)
+//         {return ticket.value;}
+//  })
+    return radios.value;
+
 }
 
 export const watchInputText = function(){
