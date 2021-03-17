@@ -175,7 +175,7 @@ if ($is_too_young) {
     }
 
 
-if($is_under_21){
+if($is_under_21 && $ticket_type!='1'){
     $result_data->message = "Reservation denied. You must be 21 or older by the event date to reserve the selected ticket.";
     echo json_encode($result_data);
     die();
