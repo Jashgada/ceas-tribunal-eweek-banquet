@@ -41,7 +41,7 @@ DOMVenmoRecipient.textContent = venmoRecipient;
     const descriptionDiv = document.querySelector('.intro-info') as HTMLElement;
     descriptionDiv.textContent = description;
   
-    generateVenmoInfo(venmoRecipient);
+   generateVenmoInfo(venmoRecipient);
   };
 
 /**
