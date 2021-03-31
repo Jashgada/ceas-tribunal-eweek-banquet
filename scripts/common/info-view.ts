@@ -5,7 +5,7 @@ import {displayWarning} from './uiElements'
 //  * @param {int} price - The price of the ticket to display.
 //  * @param {string} venmoRecipient - The reciepient of the venmo transaction to display.
 //  */
-// const generateVenmoInfo = function generateVenmoInfoForView(price:number, venmoRecipient:string) {
+// const generateVenmoInfo = function generateVenmoInfoForView(venmoRecipient:string) {
 //     const venmoLinkButton = document.querySelector('.open-venmo') as HTMLButtonElement;
 //     const venmoLinkPath = `venmo://paycharge?txn=pay&recipients=${venmoRecipient}&note=Eweek Banquet`;
   
@@ -17,12 +17,12 @@ import {displayWarning} from './uiElements'
 //       }
 //     };
   
-//     const DOMTicketPrice = document.querySelector('.ticket-price');
-//     const DOMVenmoRecipient = document.querySelector('.venmo-recipient');
+    // const DOMTicketPrice = document.querySelector('.ticket-price');
+    // const DOMVenmoRecipient = document.querySelector('.venmo-recipient') as HTMLSpanElement;
   
-//     DOMTicketPrice.textContent = price;
-//     DOMVenmoRecipient.textContent = venmoRecipient;
-//   };
+// DOMTicketPrice.textContent = price;
+// DOMVenmoRecipient.textContent = venmoRecipient;
+// };
   
  /**
    * Displays various information about the event details in the form.
@@ -30,7 +30,7 @@ import {displayWarning} from './uiElements'
    * @param {int} price - The price of the ticket to display.
    * @param {string} venmoRecipient - The reciepient of the venmo transaction to display.
    */
-  const displayInfo = function displayInfoForView(description:string, venmoRecipient:string) {
+  const displayInfo = function displayInfoForView(description: string, venmoRecipient: string) {
     // console.log(isLuauOpen);
     // if (isLuauOpen) {
     //   const luauForm = document.querySelector('.luau-form');
@@ -45,7 +45,7 @@ import {displayWarning} from './uiElements'
     // generateVenmoInfo(price, venmoRecipient);
   };
 
-  const displayTicketPrice = function displayTicketInfoForView(tickets:any[]){
+  const displayTicketPrice = function displayTicketInfoForView(tickets:TicketType[] ){
     const ticket1Price0 = document.querySelector(".radio-0") as HTMLElement;
     ticket1Price0.textContent =tickets[1].name + " ($" + tickets[1].price.toString() + ")";
    const ticket1Price1 = document.querySelector(".radio-1") as HTMLElement;
@@ -92,7 +92,8 @@ async function fetchTicketInfo() {
     displayWarning('Something went wrong while retrieving information. Please refresh the page. If the error persists, check your network connection.');
   }
 
-  
+
+
 }
 
   /**
@@ -102,4 +103,10 @@ async function fetchTicketInfo() {
   export const getInfo = function() {
     fetchInfo();
     fetchTicketInfo();
+  }
+
+  class TicketType{
+    name:string;
+    price: number;
+
   }
