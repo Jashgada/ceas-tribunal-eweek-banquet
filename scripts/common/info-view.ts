@@ -45,7 +45,11 @@ import {displayWarning} from './uiElements'
     // generateVenmoInfo(price, venmoRecipient);
   };
 
-  const displayTicketPrice = function displayTicketInfoForView(tickets:TicketType[] ){
+/**
+ * displays ticket information on frontend
+ * @param tickets : contains ticket information
+ */
+  const displayTicketPrice = function displayTicketInfoForView(tickets: TicketType[] ){
     const ticket1Price0 = document.querySelector(".radio-0") as HTMLElement;
     ticket1Price0.textContent =tickets[1].name + " ($" + tickets[1].price.toString() + ")";
    const ticket1Price1 = document.querySelector(".radio-1") as HTMLElement;
@@ -65,8 +69,6 @@ async function fetchInfo(){
           displayInfo(
             mostRecentData.description,
             mostRecentData.venmo_recipient,
-            // mostRecentData.venmo_recipient,
-            // Boolean(Number(mostRecentData.luau_open)),
           );
   }
   else{
@@ -83,9 +85,7 @@ async function fetchTicketInfo() {
   if(response.ok){
     const mostRecentData = data.data;
           displayTicketPrice(
-            mostRecentData,
-            // mostRecentData.venmo_recipient,
-            // Boolean(Number(mostRecentData.luau_open)),
+            mostRecentData
           );
   }
   else{
