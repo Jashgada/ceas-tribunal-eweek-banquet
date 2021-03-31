@@ -5,24 +5,23 @@ import {displayWarning} from './uiElements'
 //  * @param {int} price - The price of the ticket to display.
 //  * @param {string} venmoRecipient - The reciepient of the venmo transaction to display.
 //  */
-// const generateVenmoInfo = function generateVenmoInfoForView(venmoRecipient:string) {
-//     const venmoLinkButton = document.querySelector('.open-venmo') as HTMLButtonElement;
-//     const venmoLinkPath = `venmo://paycharge?txn=pay&recipients=${venmoRecipient}&note=Eweek Banquet`;
+const generateVenmoInfo = function generateVenmoInfoForView(venmoRecipient:string) {
+    const venmoLinkButton = document.querySelector('.open-venmo') as HTMLButtonElement;
+    const venmoLinkPath = `venmo://paycharge?txn=pay&recipients=${venmoRecipient}&note=Eweek Banquet`;
   
-//     venmoLinkButton.onclick = function openVenmoOnClick() {
-//       if (/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent)) {
-//         window.open(venmoLinkPath, '_blank');
-//       } else {
-//         window.open('https://venmo.com', '_blank');
-//       }
-//     };
+    venmoLinkButton.onclick = function openVenmoOnClick() {
+      if (/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent)) {
+        window.open(venmoLinkPath, '_blank');
+      } else {
+        window.open('https://venmo.com', '_blank');
+      }
+    };
   
-    // const DOMTicketPrice = document.querySelector('.ticket-price');
-    // const DOMVenmoRecipient = document.querySelector('.venmo-recipient') as HTMLSpanElement;
+    const DOMVenmoRecipient = document.querySelector('.venmo-recipient') as HTMLSpanElement;
   
-// DOMTicketPrice.textContent = price;
-// DOMVenmoRecipient.textContent = venmoRecipient;
-// };
+
+DOMVenmoRecipient.textContent = venmoRecipient;
+};
   
  /**
    * Displays various information about the event details in the form.
@@ -42,7 +41,7 @@ import {displayWarning} from './uiElements'
     const descriptionDiv = document.querySelector('.intro-info') as HTMLElement;
     descriptionDiv.textContent = description;
   
-    // generateVenmoInfo(price, venmoRecipient);
+    generateVenmoInfo(venmoRecipient);
   };
 
 /**
