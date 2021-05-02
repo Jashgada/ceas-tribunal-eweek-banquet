@@ -101,6 +101,9 @@ p a:active {
   color: #fdf3d6;
 }
 
+.reservation-form{
+  display: none;
+}
 form {
   border-radius: 5px;
   padding: 10px;
@@ -500,3 +503,21 @@ footer p:nth-of-type(2) {
   width: 90%;
 }
 
+.form-closed {
+  display: none;
+}
+
+.form-closed-box{
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 960px;
+  margin: 40px auto;
+  box-shadow: rgba(0,0,0,0.2) 0px 4px 8px 0px;
+  background: #fff;
+  position: relative;
+  text-align: center;
+}
+
+.form-closed-text {
+  color: #000;
+}
