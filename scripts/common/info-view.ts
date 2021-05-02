@@ -19,6 +19,8 @@ const generateVenmoInfo = function generateVenmoInfoForView(venmoRecipient: stri
   
     const DOMVenmoRecipient = document.querySelector('.venmo-recipient') as HTMLSpanElement;
     DOMVenmoRecipient.textContent = venmoRecipient;
+    
+
 };
   
  /**
@@ -27,15 +29,15 @@ const generateVenmoInfo = function generateVenmoInfoForView(venmoRecipient: stri
    * @param {int} price - The price of the ticket to display.
    * @param {string} venmoRecipient - The reciepient of the venmo transaction to display.
    */
-  const displayInfo = function displayInfoForView(description: string, venmoRecipient: string) {
-    // console.log(isLuauOpen);
-    // if (isLuauOpen) {
-    //   const luauForm = document.querySelector('.luau-form');
-    //   luauForm.style.display = 'block';
-    // } else {
-    //   const luauClosed = document.querySelector('.luau-closed');
-    //   luauClosed.style.display = 'block';
-    // }
+  const displayInfo = function displayInfoForView(description: string, venmoRecipient: string, isOpen:number) {
+    console.log(isOpen);
+    if (isOpen==1) {
+      const banquetForm = document.querySelector('.reservation-form') as HTMLElement;
+      banquetForm.style.display = 'block';
+    } else {
+      const banquetClosed = document.querySelector('.form-closed') as HTMLElement;
+      banquetClosed.style.display = 'block';
+    }
       const descriptionDiv = document.querySelector('.intro-info') as HTMLElement;
       descriptionDiv.textContent = description;
       generateVenmoInfo(venmoRecipient);
@@ -65,6 +67,7 @@ async function fetchInfo(){
           displayInfo(
             mostRecentData.description,
             mostRecentData.venmo_recipient,
+            mostRecentData.open
           );
   }
   else{
