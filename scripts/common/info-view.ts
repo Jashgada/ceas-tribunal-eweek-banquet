@@ -18,9 +18,7 @@ const generateVenmoInfo = function generateVenmoInfoForView(venmoRecipient:strin
     };
   
     const DOMVenmoRecipient = document.querySelector('.venmo-recipient') as HTMLSpanElement;
-  
-
-DOMVenmoRecipient.textContent = venmoRecipient;
+    DOMVenmoRecipient.textContent = venmoRecipient;
 };
   
  /**
@@ -38,10 +36,9 @@ DOMVenmoRecipient.textContent = venmoRecipient;
     //   const luauClosed = document.querySelector('.luau-closed');
     //   luauClosed.style.display = 'block';
     // }
-    const descriptionDiv = document.querySelector('.intro-info') as HTMLElement;
-    descriptionDiv.textContent = description;
-  
-    generateVenmoInfo(venmoRecipient);
+      const descriptionDiv = document.querySelector('.intro-info') as HTMLElement;
+      descriptionDiv.textContent = description;
+      generateVenmoInfo(venmoRecipient);
   };
 
 /**
@@ -90,8 +87,6 @@ async function fetchTicketInfo() {
   else{
     displayWarning('Something went wrong while retrieving information. Please refresh the page. If the error persists, check your network connection.');
   }
-
-
 
 }
 
